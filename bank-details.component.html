@@ -1,0 +1,288 @@
+<div class="card" style="margin-top: 10px;">
+    <div class="card-header crd_hed" style="text-align: left;">Bank</div>
+
+
+    <div class="card-body">
+
+        <form [formGroup]="BankForms">
+
+            <div class="row form-group" style="margin-top: 5px;">
+
+                <div class="col-md-1">City</div>
+                <div class="col-md-2">
+
+                    <select class="form-select form-control txt-field" formControlName="city" (change)="Get_Details()">
+                        <option value="null" disabled>Select</option>
+                        <option [ngValue]="U" *ngFor="let U of CITY">{{U.name}}</option>
+
+                    </select>
+                </div>
+
+
+                <div class="col-md-1">
+                    <input class="form-control btn-warning btn_Styl" type="button" (click)="ClearFn()" value="Clear">
+                </div>
+
+
+            </div>
+
+        </form>
+
+
+        <table class="table table-bordered table-striped table-hover"  *ngIf="this.BANK ?.length>0">
+            <thead>
+                <tr>
+                    <th style="color: #007bff; width: 1%;">#</th>
+                    <th style="color: #007bff; width: 2%;">FAV</th>
+
+                    <th style="color: #007bff;">City</th>
+
+                    <th>
+                        <a [class.active]="order === 'ifsc'" (click)="setOrder('ifsc')"
+                            class="mdl-data-table__cell--non-numeric">IFSC code &nbsp;
+                            <span [hidden]="reverse">↓</span>
+                            <span [hidden]="!reverse">↑</span>
+                        </a>
+                    </th>
+
+                    <th>
+
+                        <a [class.active]="order === 'bank'" (click)="setOrder('bank')"
+                            class="mdl-data-table__cell--non-numeric">Bank Name &nbsp;
+                            <span [hidden]="reverse">↓</span>
+                            <span [hidden]="!reverse">↑</span>
+                        </a>
+
+                    </th>
+
+                    <th>
+                        <a [class.active]="order === 'branch'" (click)="setOrder('branch')"
+                            class="mdl-data-table__cell--non-numeric">Branch &nbsp;
+                            <span [hidden]="reverse">↓</span>
+                            <span [hidden]="!reverse">↑</span>
+                        </a>
+                    </th>
+
+                    <th>
+                        <a [class.active]="order === 'address'" (click)="setOrder('address')"
+                            class="mdl-data-table__cell--non-numeric">Address &nbsp;
+                            <span [hidden]="reverse">↓</span>
+                            <span [hidden]="!reverse">↑</span>
+                        </a>
+                    </th>
+
+                    <th>
+                        <a [class.active]="order === 'district'" (click)="setOrder('district')"
+                            class="mdl-data-table__cell--non-numeric">District &nbsp;
+                            <span [hidden]="reverse">↓</span>
+                            <span [hidden]="!reverse">↑</span>
+                        </a>
+                    </th>
+
+                    <th>
+                        <a [class.active]="order === 'state'" (click)="setOrder('state')"
+                            class="mdl-data-table__cell--non-numeric">State &nbsp;
+                            <span [hidden]="reverse">↓</span>
+                            <span [hidden]="!reverse">↑</span>
+                        </a>
+                    </th>
+
+                    <th  style="width: 1%;">
+                        <a ngbTooltip="Refresh" placement="top" style="cursor: pointer;">
+                            <span class="pi pi-refresh" style="margin-top: 4px; margin-left: 5px;"
+                                (click)="Refresh()"></span>
+                        </a>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th colspan="2"></th>
+                    <th></th>
+                    <th class="tbl_row_srch">
+                        <input type="search" class="form-control" [(ngModel)]="userFilter.ifsc"
+                            placeholder="Filter By IFSC.." style=" height: 20px; width: 100%; margin-top: 2px;">
+                    </th>
+
+                    <th class="tbl_row_srch">
+                        <input type="search" class="form-control" [(ngModel)]="userFilter.bank"
+                            placeholder="Filter By Bank.." style=" height: 20px; width: 100%; margin-top: 2px;">
+                    </th>
+
+                    <th class="tbl_row_srch">
+                        <input type="search" class="form-control" [(ngModel)]="userFilter.branch"
+                            placeholder="Filter By Branch.." style=" height: 20px; width: 100%; margin-top: 2px;">
+                    </th>
+
+                    <th class="tbl_row_srch">
+                        <input type="search" class="form-control" [(ngModel)]="userFilter.address"
+                            placeholder="Filter By Address.." style=" height: 20px; width: 100%; margin-top: 2px;">
+                    </th>
+
+                    <th class="tbl_row_srch">
+                        <input type="search" class="form-control" [(ngModel)]="userFilter.district"
+                            placeholder="Filter By District.." style=" height: 20px; width: 100%; margin-top: 2px;">
+                    </th>
+
+                    <th class="tbl_row_srch">
+                        <input type="search" class="form-control" [(ngModel)]="userFilter.state"
+                            placeholder="Filter By State.." style=" height: 20px; width: 100%; margin-top: 2px;">
+                    </th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let bnk of BANK[0]| orderBy: order:reverse:true| filterBy: userFilter ; let ndx=index"
+                    [ngStyle]="{'background-color': (bnk.fav) ? slct_color:''}">
+
+                    <td>{{ndx+1}}</td>
+                    <td>
+
+                        <input type="checkbox" [(ngModel)]="bnk.fav" [ngModelOptions]="{standalone: true}" 
+                            style="margin-top: 4px;" (click)="Set_fav(bnk)">
+
+                    </td>
+
+                    <td>{{bnk.city}}</td>
+                    <td>{{bnk.ifsc}}</td>
+                    <td>{{bnk.bank}}</td>
+                    <td>{{bnk.branch}}</td>
+                    <td>{{bnk.address}}</td>
+                    <td>{{bnk.district}}</td>
+                    <td>{{bnk.state}}</td>
+                    <td></td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+
+
+
+<!-- <table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th style="width: 2%;">#</th>
+            <th style="width: 2%;">FAV</th>
+
+            <th>City</th>
+
+            <th>
+                <a [class.active]="order === 'ifsc'" (click)="setOrder('ifsc')"
+                    class="mdl-data-table__cell--non-numeric">IFSC code &nbsp;
+                    <span [hidden]="reverse">↓</span>
+                    <span [hidden]="!reverse">↑</span>
+                </a>
+            </th>
+
+            <th>
+
+                <a [class.active]="order === 'bank'" (click)="setOrder('bank')"
+                    class="mdl-data-table__cell--non-numeric">Bank Name &nbsp;
+                    <span [hidden]="reverse">↓</span>
+                    <span [hidden]="!reverse">↑</span>
+                </a>
+
+            </th>
+
+            <th>
+                <a [class.active]="order === 'branch'" (click)="setOrder('branch')"
+                    class="mdl-data-table__cell--non-numeric">Branch &nbsp;
+                    <span [hidden]="reverse">↓</span>
+                    <span [hidden]="!reverse">↑</span>
+                </a>
+            </th>
+
+            <th>
+                <a [class.active]="order === 'address'" (click)="setOrder('address')"
+                    class="mdl-data-table__cell--non-numeric">Address &nbsp;
+                    <span [hidden]="reverse">↓</span>
+                    <span [hidden]="!reverse">↑</span>
+                </a>
+            </th>
+
+            <th>
+                <a [class.active]="order === 'district'" (click)="setOrder('district')"
+                    class="mdl-data-table__cell--non-numeric">District &nbsp;
+                    <span [hidden]="reverse">↓</span>
+                    <span [hidden]="!reverse">↑</span>
+                </a>
+            </th>
+
+            <th>
+                <a [class.active]="order === 'state'" (click)="setOrder('state')"
+                    class="mdl-data-table__cell--non-numeric">State &nbsp;
+                    <span [hidden]="reverse">↓</span>
+                    <span [hidden]="!reverse">↑</span>
+                </a>
+            </th>
+
+            <th colspan="2" style="width: 2%;">
+                <a ngbTooltip="Refresh" placement="right" style="cursor: pointer;">
+                    <span class="pi pi-refresh" style="margin-top: 4px; margin-left: 5px;"
+                        (click)="Refresh()"></span>
+                </a>
+            </th>
+        </tr>
+
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th class="tbl_row_srch">
+                <input type="search" class="form-control" [(ngModel)]="userFilter.ifsc"
+                    placeholder="Filter By IFSC.." style=" height: 20px; width: 100%; margin-top: 2px;">
+            </th>
+
+            <th class="tbl_row_srch">
+                <input type="search" class="form-control" [(ngModel)]="userFilter.bank"
+                    placeholder="Filter By Bank.." style=" height: 20px; width: 100%; margin-top: 2px;">
+            </th>
+
+            <th class="tbl_row_srch">
+                <input type="search" class="form-control" [(ngModel)]="userFilter.branch"
+                    placeholder="Filter By Branch.." style=" height: 20px; width: 100%; margin-top: 2px;">
+            </th>
+
+            <th class="tbl_row_srch">
+                <input type="search" class="form-control" [(ngModel)]="userFilter.address"
+                    placeholder="Filter By Address.." style=" height: 20px; width: 100%; margin-top: 2px;">
+            </th>
+
+            <th class="tbl_row_srch">
+                <input type="search" class="form-control" [(ngModel)]="userFilter.district"
+                    placeholder="Filter By District.." style=" height: 20px; width: 100%; margin-top: 2px;">
+            </th>
+
+            <th class="tbl_row_srch">
+                <input type="search" class="form-control" [(ngModel)]="userFilter.state"
+                    placeholder="Filter By State.." style=" height: 20px; width: 100%; margin-top: 2px;">
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let bnk of BANK| orderBy: order:reverse:true| filterBy: userFilter ; let ndx=index"
+        >
+            <td>{{ndx+1}}</td>
+            <td>
+                <input type="checkbox" formControlName="Fav" (click)="Set_fav()"> 
+
+            </td>
+
+            <td>{{bnk.city}}</td>
+            <td>{{bnk.ifsc}}</td>
+            <td>{{bnk.bank}}</td>
+            <td>{{bnk.branch}}</td>
+            <td>{{bnk.address}}</td>
+            <td>{{bnk.district}}</td>
+            <td>{{bnk.state}}</td>
+
+        </tr>
+    </tbody>
+</table> -->

@@ -1,0 +1,163 @@
+.card-body {
+    padding-bottom:2px;
+    padding-top: 4px;
+    /*without border*/
+  }
+  
+  .card-header {
+    padding-bottom:5px;
+    padding-top: 5px;
+    background-color: #f5f5f5;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .card-footer{
+    padding-bottom:2px;
+    padding-top: 4px;
+  }
+  
+  .panel-body{
+    padding-top: 10px;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-right-style:solid;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 1px;
+  }
+  
+  .txt-field{
+    height:28px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .text-field{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 100px;
+    height: 28px;
+  }
+  
+  .center-div {
+    width: 30%;
+    margin: 0 auto;
+  }
+  
+  .form-group{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+  }
+  
+  .btn_Styl{
+    height:28px;
+    width: 80px;
+    border-radius: 8%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  
+  .botn_style:focus { 
+    outline: none !important;
+    border:1px solid rgb(252, 147, 147);
+    box-shadow: 0 0 3px rgb(255, 22, 22);
+  }
+  
+  
+  td{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  
+  }
+  
+  tr:nth-child(even) {
+    background-color: white;
+  }
+  
+  thead th { position: sticky; top: 0; background-color: white; }
+  .txt-field
+  {
+    height:28px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  th,td
+  {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .txt-field
+  {
+    height:28px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  th,td
+  {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .btn_Styl{
+    height:28px;
+    width: 80px;
+    border-radius: 8%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .botn_style:focus { 
+    outline: none !important;
+    border:1px solid rgb(252, 147, 147);
+    box-shadow: 0 0 3px rgb(255, 22, 22);
+  }
+  
+  
+   /* this is for clicked or active tabs */
+   .nav-tabs {
+      background-color: #F4F4F4;
+      color: #2E2A25;
+      font-size: 15px;
+      font-weight: bold;
+  }
+  
+  
+  .tab-title {
+    color: inherit;
+  }
+  .btn{
+    width: 100%;
+   
+  }
+  
+  
+  .modal{
+    width: 110%;
+  }
+  .modal-content{
+    width: 60%;
+    margin-top: 30%;
+    background-color: #ffe9e9;
+  }
+  
+  .btn_{
+    width: 80px;
+  }
+    
+    
+  
+  
